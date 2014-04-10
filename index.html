@@ -91,42 +91,98 @@
 						we want to return { fives: 1, ones: 2, dimes: 2, pennies: 5 } */
 						var objChange = '';
 						var result = '';
+						var intRemainderOfPennies;
 						var change = fragment.toString();
 						change = change.split('.');
 						var changeBeforePoint = change[0];
 						var changeAfterPoint = change[1];
 						
+						var intNumberOfPennies = parseFloat(fragment) * 100;
+						console.log('Number of Pennies for (' + fragment + '): ' + intNumberOfPennies);
 						
-						// Need to create a function to handle whole numbers and generate a partial change object
-						if((changeBeforePoint / 50) >= 1){
-						  console.log('divide by 50, result:' + changeBeforePoint / 50);	
-							// add fifties: 1, to result object
-							var intFifties = changeBeforePoint / 50;
-							console.log('Fifties: ' + Math.floor(intFifties));
+						if(intNumberOfPennies < 10000)
+						{
+							if(intNumberOfPennies / 5000 >= 1)
+							{
+								var intFifties = 1;
+								console.log('fifties: ' + intFifties);
+								result += 'fifties: ' + intFifties + ', ';
+								intNumberOfPennies -= 5000;
+								console.log('Remainder in pennies: ' + intNumberOfPennies);
+							}
 							
-						}else if((changeBeforePoint / 20) >= 1){
-							console.log('divide by 20, result:' + changeBeforePoint / 20);
-							// add twenties: 1, to result object
-							var intTwenties = changeBeforePoint / 20;
-							console.log('Twenties: ' + Math.floor(intTwenties));
+							if(intNumberOfPennies / 2000 >= 1)
+							{
+								var intTwenties = Math.floor(intNumberOfPennies / 2000);
+								console.log('twenties: ' + intTwenties);
+								result += 'twenties: ' + intTwenties + ', ';
+								intNumberOfPennies -= (intTwenties * 2000);
+								console.log('Remainder in pennies: ' + intNumberOfPennies);
+							}
 							
-						}else if((changeBeforePoint / 10) >= 1){
-							console.log('divide by 10, result:' + changeBeforePoint / 10);
-							// add tens: 1, to result object
-							var intTens = changeBeforePoint / 10;
-							console.log('Tens: ' + Math.floor(intTens));
+							if(intNumberOfPennies / 1000 >= 1)
+							{
+								var intTens = Math.floor(intNumberOfPennies / 1000);
+								console.log('tens: ' + intTens);
+								result += 'tens: ' + intTens + ', ';
+								intNumberOfPennies -= (intTens * 1000);
+								console.log('Remainder in pennies: ' + intNumberOfPennies);
+							}
 							
-						}else if((changeBeforePoint / 5) >= 1){
-							console.log('divide by 5, result:' + changeBeforePoint / 5);
-							// add fives: 1, to result object
-							var intFives = changeBeforePoint / 5;
-							console.log('Fives: ' + Math.floor(intFives));
+							if(intNumberOfPennies / 500 >= 1)
+							{
+								var intFives = 1;
+								console.log('fives: ' + intFives);
+								result += 'fives: ' + intFives + ', ';
+								intNumberOfPennies -= 500;
+								console.log('Remainder in pennies: ' + intNumberOfPennies);
+							}
 							
-						}else if((changeBeforePoint / 1) >= 1){
-							console.log('divide by 1, result:' + changeBeforePoint / 1);
-							var intOnes = changeBeforePoint / 1;
-							console.log('Ones: ' + intOnes);
+							if(intNumberOfPennies / 100 >= 1)
+							{
+								var intOnes = Math.floor(intNumberOfPennies / 100);
+								console.log('ones: ' + intOnes);
+								result += 'ones: ' + intOnes + ', ';
+								intNumberOfPennies -= (intOnes * 100);
+								console.log('Remainder in pennies: ' + intNumberOfPennies);
+							}
+							
+							if(intNumberOfPennies / 25 >= 1)
+							{
+								var intQuarters = Math.floor(intNumberOfPennies / 25);
+								console.log('quarters: ' + intQuarters);
+								result += 'quarters: ' + intQuarters + ', ';
+								intNumberOfPennies -= (intQuarters * 25);
+								console.log('Remainder in pennies: ' + intNumberOfPennies);
+							}
+							
+							if(intNumberOfPennies / 10 >= 1)
+							{
+								var intDimes = Math.floor(intNumberOfPennies / 10);
+								console.log('dimes: ' + intDimes);
+								result += 'dimes: ' + intDimes + ', ';
+								intNumberOfPennies -= (intDimes * 10);
+								console.log('Remainder in pennies: ' + intNumberOfPennies);
+							}
+							
+							if(intNumberOfPennies / 5 >= 1)
+							{
+								var intNickles = 1;
+								console.log('nickles: ' + intNickles);
+								result += 'twenties: ' + intNickles + ', ';
+								intNumberOfPennies -= 5;
+								console.log('Remainder in pennies: ' + intNumberOfPennies);
+							}
+							
+						  var intPennies = intNumberOfPennies;
+							console.log('pennies: ' + intPennies);
+							result += 'pennies: ' + intPennies;
+							
+							console.log('----------------------------------------');
+							
 						}
+						
+						console.log(result);
 						
 						return  true;
 					}else{
@@ -144,7 +200,27 @@
             {
               input: 7.23,
               output: { fives: 1, ones: 2, dimes: 2, pennies: 5 }
-            }
+            },
+						{
+							input: 99.78,
+							output: true
+						}/*,
+						{
+							input: 48,
+							output: true
+						},
+						{
+							input: 28,
+							output: true
+						},
+						{
+							input: 18,
+							output: true
+						},
+						{
+							input: 4,
+							output: true
+						}*/
           ]
         });
 
