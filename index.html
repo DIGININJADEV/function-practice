@@ -14,7 +14,7 @@
       $(document).ready(function() {
 
         function wordCount(fragment) {
-					if((fragment !== null) && (fragment !== undefined))
+					if(fragment)
 					{
           	return fragment.trim().split(/\s+/).length;
 					}else{
@@ -41,14 +41,33 @@
           ]
         });
 
+				function reverseText(fragment) {
+					if(fragment)
+					{
+						var reversedText = fragment.split("").reverse().join("");
+						return reversedText;
+					}else if(fragment == null){
+						return null;	
+					}else{
+						return '';	
+					}
+        }
         createExample('Reverse Text', {
           description: 'Create a function that reverses the characters in \
             a string',
-          implementation: null,
+          implementation: reverseText,
           validation: [
             {
               input: 'test value',
               output: 'eulav tset'
+            },
+					  {
+              input: 'Hello World!',
+              output: '!dlroW olleH'
+            },
+					  {
+              input: "There's no place like 127.0.0.1",
+              output: "1.0.0.721 ekil ecalp on s'erehT"
             },
             {
               input: null,
@@ -57,16 +76,70 @@
             {
               input: '',
               output: ''
+            },
+            {
+              input: undefined,
+              output: null
             }
           ]
         });
-
+				
+				function tenderChange(fragment) {
+					if(fragment)
+					{
+						/* Given 7.23  
+						we want to return { fives: 1, ones: 2, dimes: 2, pennies: 5 } */
+						var objChange = '';
+						var result = '';
+						var change = fragment.toString();
+						change = change.split('.');
+						var changeBeforePoint = change[0];
+						var changeAfterPoint = change[1];
+						
+						
+						// Need to create a function to handle whole numbers and generate a partial change object
+						if((changeBeforePoint / 50) >= 1){
+						  console.log('divide by 50, result:' + changeBeforePoint / 50);	
+							// add fifties: 1, to result object
+							var intFifties = changeBeforePoint / 50;
+							console.log('Fifties: ' + Math.floor(intFifties));
+							
+						}else if((changeBeforePoint / 20) >= 1){
+							console.log('divide by 20, result:' + changeBeforePoint / 20);
+							// add twenties: 1, to result object
+							var intTwenties = changeBeforePoint / 20;
+							console.log('Twenties: ' + Math.floor(intTwenties));
+							
+						}else if((changeBeforePoint / 10) >= 1){
+							console.log('divide by 10, result:' + changeBeforePoint / 10);
+							// add tens: 1, to result object
+							var intTens = changeBeforePoint / 10;
+							console.log('Tens: ' + Math.floor(intTens));
+							
+						}else if((changeBeforePoint / 5) >= 1){
+							console.log('divide by 5, result:' + changeBeforePoint / 5);
+							// add fives: 1, to result object
+							var intFives = changeBeforePoint / 5;
+							console.log('Fives: ' + Math.floor(intFives));
+							
+						}else if((changeBeforePoint / 1) >= 1){
+							console.log('divide by 1, result:' + changeBeforePoint / 1);
+							var intOnes = changeBeforePoint / 1;
+							console.log('Ones: ' + intOnes);
+						}
+						
+						return  true;
+					}else{
+						return '';	
+					}
+        }
+				
         createExample('Tender Change', {
           description: 'Write a function that given a dollar amount returns \
             the change in bills and coins. For instance, given \
             <code>7.23</code> it should return: \
             <pre>{ fives: 1, ones: 2, dimes: 2, pennies: 3 }</pre>',
-          implementation: null,
+          implementation: tenderChange,
           validation: [
             {
               input: 7.23,
